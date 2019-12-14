@@ -32,6 +32,12 @@
 			z-index: 2;
 			stroke-width: 3px;
 		}
+		&.reserved{
+			fill: rgba(191, 222, 240, 0.5);
+		}
+		&.sell{
+			fill: rgba(13, 88, 100, 0.5);
+		}
 	}
 
 	&__info-block{
