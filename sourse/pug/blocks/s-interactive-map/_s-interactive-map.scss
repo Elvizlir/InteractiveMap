@@ -22,7 +22,7 @@
 		position: relative;
 		fill: rgba(243, 127, 18, 0.5);
 		stroke:#000000;
-		stroke-width:1px;
+		stroke-width:1.5px;
 		stroke-linecap:butt;
 		stroke-linejoin:miter;
 		stroke-opacity:1;
@@ -42,9 +42,9 @@
 
 	&__info-block{
 		display: block ;
-		padding: rem(5);
+		padding: rem(10) rem(5);
 		z-index: 4;
-		width: rem(300);
+		width: rem(400);
 		position: absolute;
 		top: rem(20);
 		right: rem(20);
@@ -55,22 +55,22 @@
 		}
 	}
 
+	&__info-title{
+		text-align: right;
+		font-size: rem(20);
+		margin-bottom: rem(10);
+	}
+
 	&__info-status{
+		color: #fff;
 		text-align: center;
 		background-color: #ccc;
 		border-radius: rem(10);
-		text-transform: uppercase;
-		padding: rem(3) rem(5);
+		font-weight: 700;
+		font-size: rem(20);
+		line-height: 1;
+		padding: rem(5) rem(5);
 		margin-bottom: rem(10);
-		&.sell{
-			background-color: #FF7373;
-		}
-		&.free{
-			background-color: #65E080;
-		}
-		&.reserved{
-			background-color: #64AAD0;
-		}
 	}
 		
 @include media-breakpoint-up(xl) {}
