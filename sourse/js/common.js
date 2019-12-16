@@ -1,35 +1,139 @@
 function eventHandler() {
 
-	let infoBox = $('.s-interactive-map__info-block')
-	let infoTitle = $('.s-interactive-map__info-title')
-	let infoStatus = $('.s-interactive-map__info-status')
-	let infoSquare = $('.s-interactive-map__info-square')
+
+	
+	let preInfo = $('.s-interactive-map__info-block--info');
+	let infoBox = $('.s-interactive-map__info-block--main');
+	let infoStatus = $('.s-interactive-map__info-status');
+	let infoSquare = $('.s-interactive-map__info-square');
+
+
+	let infoInner = $('.s-interactive-map__info-inner--js')
 
 	$('.s-interactive-map__path').click(function(){
-		let title = $(this).data('plot');
+		let number = $(this).data('number');
+		
+		let status = $(this).data('status');
 		let square = $(this).data('square');
-
-		infoBox.removeClass('disabled');
-
-		infoTitle.text(`Участок ${title}`);
-
-		if ($(this).hasClass('sell')){
-			infoStatus.css('background-color','rgba(13, 88, 100)')
-			infoStatus.text(`Продан`);
-		} else if($(this).hasClass('reserved')){
-			infoStatus.css('background-color','rgba(191, 222, 240)')
-			infoStatus.text(`Зарезервирован`);
-		} else {
-			infoStatus.css('background-color','rgba(243, 127, 18)');
-			infoStatus.text(`Свободен`);
-		};
+		let price = $(this).data('price');
+		let fixedPrice = 50000;
 
 		
-		infoSquare.text(`Площадь: ${square}`)
+		let squarePrice = price * square;
+		let fullPrice = squarePrice + fixedPrice;
+
+	
+		preInfo.addClass('disabled')
+		infoBox.removeClass('disabled');
+
+		infoStatus.text(`Участок: ${number}`);
+
+		if (status == "sell"){
+			infoStatus.css('background-color','rgba(13, 88, 100)')
+			infoInner.html(`
+			<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Площадь(в сотках)
+			</div>
+			<div class="s-interactive-map__infoline-value">${square}
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Статус
+			</div>
+			<div class="s-interactive-map__infoline-value"> Продан
+			</div>
+		</div>
+			`)
+		} else if(status == "reserved"){
+			infoStatus.css('background-color','rgba(191, 222, 240)')
+			infoInner.html(`
+			<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Площадь(в сотках)
+			</div>
+			<div class="s-interactive-map__infoline-value">${square}
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Статус
+			</div>
+			<div class="s-interactive-map__infoline-value">Зарезервирован
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Ценовая категория(за сотку)
+			</div>
+			<div class="s-interactive-map__infoline-value">${price} руб.
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Стоимость земли
+			</div>
+			<div class="s-interactive-map__infoline-value">${squarePrice} руб.
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Дополнительно оплачивается
+			</div>
+			<div class="s-interactive-map__infoline-value"> ${fixedPrice} руб.
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Полная стоимость участка
+			</div>
+			<div class="s-interactive-map__infoline-value"> ${fullPrice} руб.
+			</div>
+		</div>
+			`)
+		} else {
+			infoStatus.css('background-color','rgba(243, 127, 18)');
+			infoInner.html(`
+			<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Площадь(в сотках)
+			</div>
+			<div class="s-interactive-map__infoline-value">${square}
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Статус
+			</div>
+			<div class="s-interactive-map__infoline-value">Свободен
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Ценовая категория(за сотку)
+			</div>
+			<div class="s-interactive-map__infoline-value">${price} руб.
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Стоимость земли
+			</div>
+			<div class="s-interactive-map__infoline-value">${squarePrice} руб.
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Дополнительно оплачивается
+			</div>
+			<div class="s-interactive-map__infoline-value"> ${fixedPrice} руб.
+			</div>
+		</div>
+		<div class="s-interactive-map__infoline">
+			<div class="s-interactive-map__infoline-title">Полная стоимость участка
+			</div>
+			<div class="s-interactive-map__infoline-value"> ${fullPrice} руб.
+			</div>
+		</div>
+			`)
+		};
+
 	});
 
-	// console.log(square);
+	let zoomMap = document.querySelector('.s-interactive-map__map-wrap');
 
+	panzoom(zoomMap,{
+		maxZoom: 3,
+		minZoom: 1
+	});
 
 };
 if (document.readyState !== 'loading') {
@@ -37,3 +141,19 @@ if (document.readyState !== 'loading') {
 } else {
 	document.addEventListener('DOMContentLoaded', eventHandler);
 }
+
+$(window).on('load', function () {
+	let path = $('.s-interactive-map__path');
+	
+	path.each(function() {
+		if ($(this).data('status') == 'sell'){
+			$(this).addClass('sell');
+		}
+		if ($(this).data('status') == 'reserved'){
+			$(this).addClass('reserved');
+		}
+	})
+	
+});
+
+
