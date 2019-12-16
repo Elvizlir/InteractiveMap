@@ -33,8 +33,15 @@ function eventHandler() {
 	});
 	var zoomMap = document.querySelector('.s-interactive-map__map-wrap');
 	panzoom(zoomMap, {
-		maxZoom: 3,
-		minZoom: 1
+		maxZoom: 2.5,
+		minZoom: 1,
+		// increment: .8,
+		// contain: "automatic",
+		// panOnlyWhenZoomed: !0,
+		bounds: true,
+		boundsPadding: 1 // $zoomIn: n(".js-zoom-in"),
+		// $zoomOut: n(".js-zoom-out")
+
 	});
 }
 
