@@ -88,15 +88,45 @@
 
 	&__infoline{
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
 	}
 
 	&__infoline-title{
+		line-height: 1;
 		font-weight: 700;
 	}
 
 	&__infoline-value{
-		
+		font-size: rem(18);
+	}
+
+	&__nav-block{
+		z-index: 20;
+		position: absolute;
+		bottom: rem(20);
+		right: rem(20);
+	}
+
+	&__zoom{
+		outline: none !important;
+		border: none;
+		background-color: #006DF0;
+		width: rem(50);
+		color: #fff;
+		height: rem(50);
+		cursor: pointer;
+		font-weight: 700;
+		font-size: rem(20);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		border-radius: 50%;
+		box-shadow: 0 3px 5px rgba(0,0,0,.1);
+		&:not(:last-child){
+			margin-bottom: rem(20);
+		}
 	}
 
 
