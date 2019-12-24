@@ -33,6 +33,9 @@ function eventHandler() {
 	});
 	var btnUp = document.querySelector('.s-interactive-map__zoom--up');
 	var btnDown = document.querySelector('.s-interactive-map__zoom--down');
+	$('.s-interactive-map__close--js').click(function (e) {
+		$(this).parent().toggleClass('disabled');
+	});
 	btnUp.addEventListener('click', function (e) {
 		zoom(1.25, true);
 	});
